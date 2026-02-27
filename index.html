@@ -13,6 +13,7 @@
         
         h1, h2, h3, .logo { font-family: 'Space Grotesk', sans-serif; }
 
+        /* Fondo animado */
         .background { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0f172a; }
         .circle { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; animation: float 10s infinite ease-in-out alternate; }
         .circle1 { width: 400px; height: 400px; background: #3b82f6; top: -10%; left: -10%; }
@@ -24,10 +25,20 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Modificación de la cabecera para apilar el logo y el botón */
+        header { padding: 40px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
         
         .logo { font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: linear-gradient(to right, #60a5fa, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
+        /* Botón de cambio de idioma */
+        .lang-toggle-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #94a3b8; padding: 6px 16px; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+        .lang-toggle-btn:hover { background: rgba(255, 255, 255, 0.1); color: #f8fafc; border-color: rgba(59, 130, 246, 0.4); transform: translateY(-2px); }
+
+        /* Transición suave para el cambio de idioma */
+        .content-transition { transition: opacity 0.4s ease-in-out; }
+        .content-transition.fading { opacity: 0; }
+
         .hero { min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding-bottom: 60px; }
         .hero-text { text-align: left; }
         
@@ -86,19 +97,20 @@
         <div class="circle circle2"></div>
     </div>
 
-    <div class="container">
+    <div id="app-content" class="container content-transition">
         <header>
-            <div class="logo">Diego Perera - Ingeniero de Telecomunicaciones</div>
+            <div class="logo" data-i18n="logo">Diego Perera - Ingeniero de Telecomunicaciones</div>
+            <button id="langToggle" class="lang-toggle-btn" data-i18n="btn-lang">Switch to English 🇬🇧</button>
         </header>
 
         <section class="hero fade-in">
             <div class="hero-text">
-                <div class="badge">CISO & Ingeniero de Sistemas</div>
-                <h1>Hola, soy <br><span>Diego Perera</span></h1>
-                <p>Apasionado por la arquitectura de software, las infraestructuras resilientes y la resolución de problemas complejos. Actualmente ejerzo como CISO en una consultora IT, donde transformo la lógica en soluciones digitales estables y seguras.</p>
+                <div class="badge" data-i18n="badge">CISO & Ingeniero de Sistemas</div>
+                <h1 data-i18n="h1">Hola, soy <br><span>Diego Perera</span></h1>
+                <p data-i18n="desc">Apasionado por la arquitectura de software, las infraestructuras resilientes y la resolución de problemas complejos. Actualmente ejerzo como CISO en una consultora IT, donde transformo la lógica en soluciones digitales estables y seguras.</p>
                 <div>
-                    <a href="https://www.linkedin.com/in/diego-p-79333582/" target="_blank" class="btn btn-primary">Ver mi LinkedIn</a>
-                    <button id="btnContacto" class="btn btn-secondary">Contactar</button>
+                    <a href="https://www.linkedin.com/in/diego-p-79333582/" target="_blank" class="btn btn-primary" data-i18n="btn-linkedin">Ver mi LinkedIn</a>
+                    <button id="btnContacto" class="btn btn-secondary" data-i18n="btn-contact">Contactar</button>
                 </div>
             </div>
             <div class="hero-image-container">
@@ -107,40 +119,40 @@
         </section>
 
         <section class="experience-section fade-in">
-            <h2 class="section-title">Mi perfil y experiencia</h2>
+            <h2 class="section-title" data-i18n="exp-title">Mi perfil y experiencia</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>Ingeniería de Sistemas</h3>
-                    <p>Diseño, desarrollo y mantenimiento de infraestructuras tecnológicas y sistemas de información escalables, garantizando la máxima seguridad y eficiencia operacional.</p>
+                    <h3 data-i18n="exp-1-h3">Ingeniería de Sistemas</h3>
+                    <p data-i18n="exp-1-p">Diseño, desarrollo y mantenimiento de infraestructuras tecnológicas y sistemas de información escalables, garantizando la máxima seguridad y eficiencia operacional.</p>
                 </div>
                 <div class="card">
-                    <h3>Arquitectura y Redes</h3>
-                    <p>Implementación de soluciones tecnológicas robustas, optimizando los recursos empresariales, mejorando la disponibilidad y garantizando el rendimiento de los sistemas.</p>
+                    <h3 data-i18n="exp-2-h3">Arquitectura y Redes</h3>
+                    <p data-i18n="exp-2-p">Implementación de soluciones tecnológicas robustas, optimizando los recursos empresariales, mejorando la disponibilidad y garantizando el rendimiento de los sistemas.</p>
                 </div>
                 <div class="card">
-                    <h3>Gestión Estratégica IT</h3>
-                    <p>Visión técnica orientada a negocio para aplicar las mejores herramientas del mercado, liderando la ciberseguridad y aportando valor continuo en cada fase del proyecto.</p>
+                    <h3 data-i18n="exp-3-h3">Gestión Estratégica IT</h3>
+                    <p data-i18n="exp-3-p">Visión técnica orientada a negocio para aplicar las mejores herramientas del mercado, liderando la ciberseguridad y aportando valor continuo en cada fase del proyecto.</p>
                 </div>
             </div>
         </section>
 
         <section class="tech-section fade-in">
-            <h2 class="section-title">Stack Tecnológico</h2>
+            <h2 class="section-title" data-i18n="tech-title">Stack Tecnológico</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>Observabilidad y Seguridad</h3>
-                    <p><span class="tech-highlight">Gigamon:</span> Nivel Experto (Certificación GCP). Diseño, implementación y gestión avanzada de soluciones de observabilidad y monitorización de red a gran escala.</p>
-                    <p><span class="tech-highlight">Seguridad:</span> Integración y análisis de datos con Splunk, despliegues con WatchGuard y control de acceso (NAC) con ForeScout.</p>
+                    <h3 data-i18n="tech-1-h3">Observabilidad y Seguridad</h3>
+                    <p data-i18n="tech-1-p1"><span class='tech-highlight'>Gigamon:</span> Nivel Experto (Certificación GCP). Diseño, implementación y gestión avanzada de soluciones de observabilidad y monitorización de red a gran escala.</p>
+                    <p data-i18n="tech-1-p2"><span class='tech-highlight'>Seguridad:</span> Integración y análisis de datos con Splunk, despliegues con WatchGuard y control de acceso (NAC) con ForeScout.</p>
                 </div>
                 <div class="card">
-                    <h3>Automatización y Pruebas</h3>
-                    <p><span class="tech-highlight">Spirent:</span> Dominio de la automatización de redes mediante API e iTest, y generación de tráfico a gran escala con STC.</p>
-                    <p><span class="tech-highlight">Rendimiento:</span> Sincronismo de precisión con Calnex Paragon y emulación avanzada de redes WAN con Calnex SNE.</p>
+                    <h3 data-i18n="tech-2-h3">Automatización y Pruebas</h3>
+                    <p data-i18n="tech-2-p1"><span class='tech-highlight'>Spirent:</span> Dominio de la automatización de redes mediante API e iTest, y generación de tráfico a gran escala con STC.</p>
+                    <p data-i18n="tech-2-p2"><span class='tech-highlight'>Rendimiento:</span> Sincronismo de precisión con Calnex Paragon y emulación avanzada de redes WAN con Calnex SNE.</p>
                 </div>
                 <div class="card">
-                    <h3>Monitoreo e Infraestructura</h3>
-                    <p><span class="tech-highlight">Viavi Solutions:</span> Especialista en monitorización y troubleshooting de red utilizando Apex, GigaFlow y GigaStor.</p>
-                    <p><span class="tech-highlight">Plataformas:</span> Despliegue, orquestación y solución de problemas en entornos con Kubernetes, OpenStack, OVS y hardware Dell PowerEdge.</p>
+                    <h3 data-i18n="tech-3-h3">Monitoreo e Infraestructura</h3>
+                    <p data-i18n="tech-3-p1"><span class='tech-highlight'>Viavi Solutions:</span> Especialista en monitorización y troubleshooting de red utilizando Apex, GigaFlow y GigaStor.</p>
+                    <p data-i18n="tech-3-p2"><span class='tech-highlight'>Plataformas:</span> Despliegue, orquestación y solución de problemas en entornos con Kubernetes, OpenStack, OVS y hardware Dell PowerEdge.</p>
                 </div>
             </div>
         </section>
@@ -149,13 +161,14 @@
     <div id="modalContacto" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="cerrarModal">&times;</span>
-            <h3>Información de Contacto</h3>
-            <p>Puedes escribirme directamente a este correo electrónico:</p>
+            <h3 data-i18n="modal-h3">Información de Contacto</h3>
+            <p data-i18n="modal-p">Puedes escribirme directamente a este correo electrónico:</p>
             <strong>dpereramartin@gmail.com</strong>
         </div>
     </div>
 
     <script>
+        // Animaciones de scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -176,26 +189,110 @@
             });
         }, 100);
 
+        // Lógica del Modal
         const modal = document.getElementById("modalContacto");
-        const btn = document.getElementById("btnContacto");
+        const btnContacto = document.getElementById("btnContacto");
         const span = document.getElementById("cerrarModal");
 
-        btn.onclick = function() {
+        btnContacto.onclick = function() {
             modal.style.display = "flex";
             setTimeout(() => { modal.classList.add("show"); }, 10);
         }
-
         span.onclick = function() {
             modal.classList.remove("show");
             setTimeout(() => { modal.style.display = "none"; }, 300);
         }
-
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.classList.remove("show");
                 setTimeout(() => { modal.style.display = "none"; }, 300);
             }
         }
+
+        // --- SISTEMA DE IDIOMAS (Diccionario) ---
+        const translations = {
+            es: {
+                "logo": "Diego Perera - Ingeniero de Telecomunicaciones",
+                "btn-lang": "Switch to English 🇬🇧",
+                "badge": "CISO & Ingeniero de Sistemas",
+                "h1": "Hola, soy <br><span>Diego Perera</span>",
+                "desc": "Apasionado por la arquitectura de software, las infraestructuras resilientes y la resolución de problemas complejos. Actualmente ejerzo como CISO en una consultora IT, donde transformo la lógica en soluciones digitales estables y seguras.",
+                "btn-linkedin": "Ver mi LinkedIn",
+                "btn-contact": "Contactar",
+                "exp-title": "Mi perfil y experiencia",
+                "exp-1-h3": "Ingeniería de Sistemas",
+                "exp-1-p": "Diseño, desarrollo y mantenimiento de infraestructuras tecnológicas y sistemas de información escalables, garantizando la máxima seguridad y eficiencia operacional.",
+                "exp-2-h3": "Arquitectura y Redes",
+                "exp-2-p": "Implementación de soluciones tecnológicas robustas, optimizando los recursos empresariales, mejorando la disponibilidad y garantizando el rendimiento de los sistemas.",
+                "exp-3-h3": "Gestión Estratégica IT",
+                "exp-3-p": "Visión técnica orientada a negocio para aplicar las mejores herramientas del mercado, liderando la ciberseguridad y aportando valor continuo en cada fase del proyecto.",
+                "tech-title": "Stack Tecnológico",
+                "tech-1-h3": "Observabilidad y Seguridad",
+                "tech-1-p1": "<span class='tech-highlight'>Gigamon:</span> Nivel Experto (Certificación GCP). Diseño, implementación y gestión avanzada de soluciones de observabilidad y monitorización de red a gran escala.",
+                "tech-1-p2": "<span class='tech-highlight'>Seguridad:</span> Integración y análisis de datos con Splunk, despliegues con WatchGuard y control de acceso (NAC) con ForeScout.",
+                "tech-2-h3": "Automatización y Pruebas",
+                "tech-2-p1": "<span class='tech-highlight'>Spirent:</span> Dominio de la automatización de redes mediante API e iTest, y generación de tráfico a gran escala con STC.",
+                "tech-2-p2": "<span class='tech-highlight'>Rendimiento:</span> Sincronismo de precisión con Calnex Paragon y emulación avanzada de redes WAN con Calnex SNE.",
+                "tech-3-h3": "Monitoreo e Infraestructura",
+                "tech-3-p1": "<span class='tech-highlight'>Viavi Solutions:</span> Especialista en monitorización y troubleshooting de red utilizando Apex, GigaFlow y GigaStor.",
+                "tech-3-p2": "<span class='tech-highlight'>Plataformas:</span> Despliegue, orquestación y solución de problemas en entornos con Kubernetes, OpenStack, OVS y hardware Dell PowerEdge.",
+                "modal-h3": "Información de Contacto",
+                "modal-p": "Puedes escribirme directamente a este correo electrónico:"
+            },
+            en: {
+                "logo": "Diego Perera - Telecommunications Engineer",
+                "btn-lang": "Cambiar a Español 🇪🇸",
+                "badge": "CISO & Systems Engineer",
+                "h1": "Hi, I'm <br><span>Diego Perera</span>",
+                "desc": "Passionate about software architecture, resilient infrastructures, and solving complex problems. Currently working as a CISO in an IT consulting firm, where I transform logic into stable and secure digital solutions.",
+                "btn-linkedin": "View my LinkedIn",
+                "btn-contact": "Contact me",
+                "exp-title": "My profile and experience",
+                "exp-1-h3": "Systems Engineering",
+                "exp-1-p": "Design, development, and maintenance of scalable technological infrastructures and information systems, ensuring maximum security and operational efficiency.",
+                "exp-2-h3": "Architecture and Networks",
+                "exp-2-p": "Implementation of robust technological solutions, optimizing business resources, improving availability, and guaranteeing system performance.",
+                "exp-3-h3": "Strategic IT Management",
+                "exp-3-p": "Business-oriented technical vision to apply the best market tools, leading cybersecurity and providing continuous value in every project phase.",
+                "tech-title": "Tech Stack",
+                "tech-1-h3": "Observability and Security",
+                "tech-1-p1": "<span class='tech-highlight'>Gigamon:</span> Expert Level (GCP Certification). Design, implementation, and advanced management of observability and network monitoring solutions at scale.",
+                "tech-1-p2": "<span class='tech-highlight'>Security:</span> Data integration and analysis with Splunk, deployments with WatchGuard, and network access control (NAC) with ForeScout.",
+                "tech-2-h3": "Automation and Testing",
+                "tech-2-p1": "<span class='tech-highlight'>Spirent:</span> Mastery of network automation using API and iTest, and large-scale traffic generation with STC.",
+                "tech-2-p2": "<span class='tech-highlight'>Performance:</span> Precision synchronization with Calnex Paragon and advanced WAN network emulation with Calnex SNE.",
+                "tech-3-h3": "Monitoring and Infrastructure",
+                "tech-3-p1": "<span class='tech-highlight'>Viavi Solutions:</span> Specialist in network monitoring and troubleshooting using Apex, GigaFlow, and GigaStor.",
+                "tech-3-p2": "<span class='tech-highlight'>Platforms:</span> Deployment, orchestration, and troubleshooting in environments with Kubernetes, OpenStack, OVS, and Dell PowerEdge hardware.",
+                "modal-h3": "Contact Information",
+                "modal-p": "You can write me directly at this email address:"
+            }
+        };
+
+        let currentLang = 'es';
+        const langBtn = document.getElementById('langToggle');
+        const appContent = document.getElementById('app-content');
+        const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+
+        langBtn.addEventListener('click', () => {
+            // 1. Iniciamos el desvanecimiento (fade out)
+            appContent.classList.add('fading');
+            
+            // 2. Esperamos a que la web se vuelva transparente (400ms) para cambiar el texto
+            setTimeout(() => {
+                currentLang = currentLang === 'es' ? 'en' : 'es';
+                
+                elementsToTranslate.forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if(translations[currentLang][key]) {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                });
+                
+                // 3. Quitamos el desvanecimiento para que vuelva a aparecer (fade in)
+                appContent.classList.remove('fading');
+            }, 400); 
+        });
     </script>
 </body>
 </html>
