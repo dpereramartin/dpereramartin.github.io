@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diego Perera | Ingeniero de Telecomunicaciones & CISO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
     <link rel="icon" type="image/png" href="favicon.png">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
         
-        /* Tipografía especial para títulos */
         h1, h2, h3, .logo { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Fondo animado estilo moderno */
         .background { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0f172a; }
         .circle { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; animation: float 10s infinite ease-in-out alternate; }
         .circle1 { width: 400px; height: 400px; background: #3b82f6; top: -10%; left: -10%; }
@@ -26,36 +23,30 @@
             100% { transform: translateY(50px) scale(1.1); } 
         }
 
-        /* Estructura general */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         header { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
         
         .logo { font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: linear-gradient(to right, #60a5fa, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Sección Principal (Hero) */
         .hero { min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding-bottom: 60px; }
         .hero-text { text-align: left; }
         
-        /* Etiqueta CISO (NUEVO) */
         .badge { display: inline-block; padding: 8px 16px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.3); border-radius: 50px; color: #38bdf8; font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15); }
 
         .hero h1 { font-size: 4rem; font-weight: 700; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
         .hero h1 span { background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { font-size: 1.15rem; color: #94a3b8; margin-bottom: 35px; line-height: 1.8; }
         
-        /* Estilos de la Foto Rectangular */
         .hero-image-container { display: flex; justify-content: center; align-items: center; }
         .hero-image { width: 100%; max-width: 450px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(14, 165, 233, 0.2); object-fit: cover; filter: contrast(1.05) clarity(1.05); transition: transform 0.3s ease; }
         .hero-image:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(14, 165, 233, 0.3); }
 
-        /* Botones */
         .btn { display: inline-block; padding: 16px 36px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem; cursor: pointer; border: none; font-family: 'Poppins', sans-serif;}
         .btn-primary { background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%); color: white; box-shadow: 0 10px 20px -10px rgba(14, 165, 233, 0.6); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -10px rgba(14, 165, 233, 0.9); }
         .btn-secondary { background: rgba(255, 255, 255, 0.1); color: white; margin-left: 15px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-3px); }
         
-        /* Tarjetas de Experiencia y Stack (Efecto Glassmorphism) */
         .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 40px; color: #f8fafc; }
         .experience-section, .tech-section { margin-bottom: 100px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -64,10 +55,8 @@
         .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #38bdf8; }
         .card p { color: #94a3b8; line-height: 1.7; margin-bottom: 10px; }
         
-        /* Resaltados específicos en la sección de herramientas */
         .tech-highlight { color: #f8fafc; font-weight: 600; }
 
-        /* Estilos de la Ventana Emergente (Modal) */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; }
         .modal.show { display: flex; justify-content: center; align-items: center; opacity: 1; }
         .modal-content { background: #1e293b; padding: 40px; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; max-width: 400px; width: 90%; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5); transform: translateY(-20px); transition: transform 0.3s ease; }
@@ -78,7 +67,6 @@
         .modal-content p { color: #94a3b8; font-size: 1.1rem; font-family: 'Poppins', sans-serif;}
         .modal-content strong { color: #0ea5e9; font-size: 1.2rem; display: block; margin-top: 10px; user-select: all; font-family: 'Poppins', sans-serif;}
 
-        /* Animaciones */
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         
@@ -118,27 +106,6 @@
             </div>
         </section>
 
-        <section class="tech-section fade-in">
-            <h2 class="section-title">Armamento Tecnológico</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Observabilidad y Seguridad</h3>
-                    <p><span class="tech-highlight">Gigamon:</span> Nivel Experto (Certificación GCP). Gestión profunda de clústeres, HC1, TA25 y Flow Mapping para NetFlow.</p>
-                    <p><span class="tech-highlight">Seguridad:</span> Integración y análisis de datos con Splunk, despliegues con WatchGuard y control de acceso (NAC) con ForeScout.</p>
-                </div>
-                <div class="card">
-                    <h3>Automatización y Pruebas</h3>
-                    <p><span class="tech-highlight">Spirent:</span> Dominio de la automatización de redes mediante API e iTest, y generación de tráfico a gran escala con STC.</p>
-                    <p><span class="tech-highlight">Rendimiento:</span> Sincronismo de precisión con Calnex Paragon y emulación avanzada de redes WAN con Calnex SNE.</p>
-                </div>
-                <div class="card">
-                    <h3>Monitoreo e Infraestructura</h3>
-                    <p><span class="tech-highlight">Viavi Solutions:</span> Especialista en monitorización y troubleshooting de red utilizando Apex, GigaFlow y GigaStor.</p>
-                    <p><span class="tech-highlight">Plataformas:</span> Despliegue, orquestación y solución de problemas en entornos con Kubernetes, OpenStack, OVS y hardware Dell PowerEdge.</p>
-                </div>
-            </div>
-        </section>
-
         <section class="experience-section fade-in">
             <h2 class="section-title">Mi perfil y experiencia</h2>
             <div class="grid">
@@ -153,6 +120,27 @@
                 <div class="card">
                     <h3>Gestión Estratégica IT</h3>
                     <p>Visión técnica orientada a negocio para aplicar las mejores herramientas del mercado, liderando la ciberseguridad y aportando valor continuo en cada fase del proyecto.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-section fade-in">
+            <h2 class="section-title">Stack Tecnológico</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Observabilidad y Seguridad</h3>
+                    <p><span class="tech-highlight">Gigamon:</span> Nivel Experto (Certificación GCP). Diseño, implementación y gestión avanzada de soluciones de observabilidad y monitorización de red a gran escala.</p>
+                    <p><span class="tech-highlight">Seguridad:</span> Integración y análisis de datos con Splunk, despliegues con WatchGuard y control de acceso (NAC) con ForeScout.</p>
+                </div>
+                <div class="card">
+                    <h3>Automatización y Pruebas</h3>
+                    <p><span class="tech-highlight">Spirent:</span> Dominio de la automatización de redes mediante API e iTest, y generación de tráfico a gran escala con STC.</p>
+                    <p><span class="tech-highlight">Rendimiento:</span> Sincronismo de precisión con Calnex Paragon y emulación avanzada de redes WAN con Calnex SNE.</p>
+                </div>
+                <div class="card">
+                    <h3>Monitoreo e Infraestructura</h3>
+                    <p><span class="tech-highlight">Viavi Solutions:</span> Especialista en monitorización y troubleshooting de red utilizando Apex, GigaFlow y GigaStor.</p>
+                    <p><span class="tech-highlight">Plataformas:</span> Despliegue, orquestación y solución de problemas en entornos con Kubernetes, OpenStack, OVS y hardware Dell PowerEdge.</p>
                 </div>
             </div>
         </section>
