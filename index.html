@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,11 +11,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
         
-        /* Fondo animado estilo moderno (Menos Morado) */
+        /* Fondo animado estilo moderno */
         .background { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0f172a; }
         .circle { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; animation: float 10s infinite ease-in-out alternate; }
         .circle1 { width: 400px; height: 400px; background: #3b82f6; top: -10%; left: -10%; }
-        /* Cambiado a un cian/turquesa intenso, mucho menos morado */
         .circle2 { width: 350px; height: 350px; background: #06b6d4; bottom: -10%; right: -5%; animation-delay: -5s; }
         
         @keyframes float { 
@@ -23,117 +23,38 @@
         }
 
         /* Estructura general */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         header { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
         
-        /* Estilos del Título de Cabecera Profesional */
         .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; background: linear-gradient(to right, #60a5fa, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Sección Principal (Hero) */
-        .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; text-align: left; padding-bottom: 20px;}
+        /* Sección Principal (Hero) dividida en dos columnas */
+        .hero { min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding-bottom: 60px; }
+        .hero-text { text-align: left; }
         .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; letter-spacing: -1px; }
         .hero h1 span { background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.25rem; color: #94a3b8; max-width: 650px; margin-bottom: 30px; line-height: 1.8; }
+        .hero p { font-size: 1.15rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.8; }
         
+        /* Estilos de la Foto Rectangular */
+        .hero-image-container { display: flex; justify-content: center; align-items: center; }
+        .hero-image { width: 100%; max-width: 450px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(14, 165, 233, 0.2); object-fit: cover; filter: contrast(1.05) clarity(1.05); transition: transform 0.3s ease; }
+        .hero-image:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(14, 165, 233, 0.3); }
+
         /* Botones */
-        .btn { display: inline-block; padding: 16px 36px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;}
-        .btn-primary { background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%); color: white; box-shadow: 0 10px 20px -10px rgba(139, 92, 246, 0.6); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -10px rgba(139, 92, 246, 0.9); }
+        .btn { display: inline-block; padding: 16px 36px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem; cursor: pointer; border: none; font-family: 'Poppins', sans-serif;}
+        .btn-primary { background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%); color: white; box-shadow: 0 10px 20px -10px rgba(14, 165, 233, 0.6); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -10px rgba(14, 165, 233, 0.9); }
         .btn-secondary { background: rgba(255, 255, 255, 0.1); color: white; margin-left: 15px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-3px); }
         
-        /* Estilos de la Foto de Perfil Espectacular */
-        .profile-photo-container { display: flex; justify-content: center; margin-bottom: 50px; }
-        .profile-photo-ring { position: relative; width: 220px; height: 220px; border-radius: 50%; padding: 10px; background: linear-gradient(to right, #60a5fa, #0ea5e9); box-shadow: 0 15px 35px rgba(139, 92, 246, 0.5); }
-        .profile-photo-frame { width: 100%; height: 100%; border-radius: 50%; background: #0f172a; padding: 5px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3); }
-        .profile-photo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); filter: contrast(1.1) clarity(1.1); /* FILTROS CSS PROFESIONALES */ }
-
-        /* Tarjetas de Experiencia (Efecto Glassmorphism) */
-        .section-title { font-size: 2rem; font-weight: 800; margin-top: 0; margin-bottom: 30px; }
-        .experience-section { margin-top: 0; margin-bottom: 100px; }
+        /* Tarjetas de Experiencia */
+        .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; }
+        .experience-section { margin-bottom: 100px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 40px; backdrop-filter: blur(10px); transition: transform 0.3s ease, border-color 0.3s ease; }
-        .card:hover { transform: translateY(-10px); border-color: rgba(139, 92, 246, 0.5); background: rgba(255, 255, 255, 0.05); }
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 40px; backdrop-filter: blur(10px); transition: transform 0.3s ease, border-color 0.3s ease; }
+        .card:hover { transform: translateY(-10px); border-color: rgba(59, 130, 246, 0.5); background: rgba(255, 255, 255, 0.05); }
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #f8fafc; }
         .card p { color: #94a3b8; line-height: 1.7; }
 
-        /* Animaciones para que los elementos aparezcan suavemente */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .btn-secondary { margin-left: 0; margin-top: 15px; display: inline-block;}
-            .profile-photo-ring { width: 180px; height: 180px; }
-        }
-    </style>
-</head>
-<body>
-    <div class="background">
-        <div class="circle circle1"></div>
-        <div class="circle circle2"></div>
-    </div>
-
-    <div class="container">
-        <header>
-            <div class="logo">Diego Perera - Ingeniero de Telecomunicaciones</div>
-        </header>
-
-        <section class="hero fade-in">
-            <h1>Hola, soy <br><span>Diego Perera</span></h1>
-            <p>Ingeniero de Telecomunicaciones. Apasionado por la arquitectura de software, las infraestructuras resilientes y la resolución de problemas complejos. Transformo la lógica en soluciones digitales estables.</p>
-            <div>
-                <a href="https://www.linkedin.com/in/diego-p-79333582/" target="_blank" class="btn btn-primary">Ver mi LinkedIn</a>
-                <a href="mailto:dpereramartin@gmail.com" class="btn btn-secondary">Contactar</a>
-            </div>
-        </section>
-
-        <section class="experience-section fade-in">
-            <div class="profile-photo-container">
-                <div class="profile-photo-ring">
-                    <div class="profile-photo-frame">
-                        <img src="image_0.png" alt="Foto de Diego Perera" class="profile-photo">
-                    </div>
-                </div>
-            </div>
-            <h2 class="section-title">Mi perfil y experiencia</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Ingeniería de Sistemas</h3>
-                    <p>Diseño, desarrollo y mantenimiento de infraestructuras tecnológicas y sistemas de información escalables, garantizando la máxima seguridad y eficiencia operacional.</p>
-                </div>
-                <div class="card">
-                    <h3>Arquitectura y Redes</h3>
-                    <p>Implementación de soluciones tecnológicas robustas, optimizando los recursos empresariales, mejorando la disponibilidad y garantizando el rendimiento de los sistemas.</p>
-                </div>
-                <div class="card">
-                    <h3>Gestión Tecnológica</h3>
-                    <p>Visión estratégica para aplicar las mejores herramientas y metodologías del mercado a las necesidades del negocio, aportando valor continuo en cada fase del proyecto.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-        
-        setTimeout(() => {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                if(el.getBoundingClientRect().top < window.innerHeight) {
-                    el.classList.add('visible');
-                }
-            });
-        }, 100);
-    </script>
-</body>
-</html>
+        /* Estilos de la Ventana Emergente (Modal) */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top:
